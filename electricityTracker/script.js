@@ -67,10 +67,10 @@ function calculateStats(){
         stat[1].innerHTML = 0;
         stat[2].innerHTML = 0;
         stat[3].innerHTML = 0;
-        stat[4].innerHTML = "Tabela še ne obstaja";
-        stat[5].innerHTML = "Tabela še ne obstaja";
-        stat[6].innerHTML = "Tabela še ne obstaja";
-        stat[7].innerHTML = "Tabela še ne obstaja";
+        stat[4].innerHTML = "<span class='txt_tabledoesnotexist'>"+getLangValue("tabledoesnotexist")+"</span>";
+        stat[5].innerHTML = "<span class='txt_tabledoesnotexist'>"+getLangValue("tabledoesnotexist")+"</span>";
+        stat[6].innerHTML = "<span class='txt_tabledoesnotexist'>"+getLangValue("tabledoesnotexist")+"</span>";
+        stat[7].innerHTML = "<span class='txt_tabledoesnotexist'>"+getLangValue("tabledoesnotexist")+"</span>";
         stat[8].innerHTML = 0;
         return;
     }
@@ -121,17 +121,17 @@ function formatStats(val, kvh){
     let t = "";
     switch(val[2]){
         case "VT":
-            t = getLangValue("high");
+            t = "high"
             break;
         case "MT":
-            t = getLangValue("low");
+            t = "low";
             break;
         case "ET":
-            t = getLangValue("unified");
+            t = "unified";
             break
     }
     
-    return ((kvh) ? val[0]+" kWh | " : "") +val[1]+" €/kWh | "+t+" | "+new Date(val[3]).toLocaleDateString();
+    return ((kvh) ? val[0]+" kWh | " : "") +val[1]+" €/kWh | <span class='txt_"+t+"'>"+getLangValue(t)+"</span> | "+new Date(val[3]).toLocaleDateString();
 }
 
 function removeRow(e){

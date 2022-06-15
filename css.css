@@ -94,5 +94,22 @@ a:hover{
     color: var(--link-hover);
 }
 
+.projects{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.projects a{
+    font-size: x-large;
+}
+
+.projects li{
+    border: 1px solid black;
+    margin: 2px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
 
 .links > a { padding: 0 10px 0 10px;}

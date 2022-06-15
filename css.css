@@ -42,6 +42,14 @@ header{
     font-size: x-large;
 }
 
+header a {
+    color:var(--color);
+}
+
+header a:hover {
+    color:var(--color);
+}
+
 footer{
     border-top-style: var(--border-style);
     border-width: var(--border-width);

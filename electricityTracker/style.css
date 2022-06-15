@@ -1,0 +1,468 @@
+:root{
+    --color: black;
+    --bg-color: #f3f3f3;
+    --bg-color2: #ffffff;
+    --bg-color3: #ffffff77;
+
+    --hover: blue;
+
+    --error: #d80202;
+    --error-text: #ffffff;
+    --warning: yellow;
+    --warning-text: black;
+    --success: #00bb00;
+    --success-text: #ffffff;
+
+    --border-bg: #ffffff;
+    --border-color: #a8e7e9d0;
+    --border-style: double;
+    --border-width: 3px;
+    --border-radius: 5px;
+}
+* {
+    box-sizing: border-box;
+}
+.padding-left{
+    padding-left: 5px;
+}
+a{
+    color: var(--color);
+    text-decoration: none;
+}
+
+a:hover{
+    color: var(--hover);
+}
+
+body{
+    color: var(--color);
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    min-width: 100vw;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: 33% 34% 33%;
+    grid-template-areas: 
+      'head head nav'
+      'loc loc loc'
+      'graph graph graph'
+      'tab tab tab'
+      'foot foot foot'
+    ;
+
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    grid-area: head;
+    margin: 3px 0 3px 3px;
+    padding: 5px;
+    background-color: var(--border-bg);
+    border-width: var(--border-width) 0 var(--border-width) var(--border-width);
+    border-style: var(--border-style);
+    border-color: var(--border-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.locationContainer{
+    min-width: 0px;
+    max-width: 600px;
+    grid-area: loc;
+    margin: 3px;
+    padding: 5px;
+    background-color: var(--border-bg);
+    border-width: var(--border-width);
+    border-style:  var(--border-style);
+    border-color: var(--border-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+}
+
+.settingsBorder, .locationBorder, .table{
+    overflow: auto;
+}
+
+#table{
+    width: 100%;
+}
+
+td > *{
+    height:100%;
+    width:100%;
+}
+
+
+.locationBorder{
+   
+    white-space: nowrap;
+    
+   
+}
+
+.titleText, .titleText > Button{
+    padding: 7px 0 7px 0;
+    font-weight: bold; 
+    border: none;
+    font-size: large;
+}
+
+.titleText > Button {
+    padding: 7px;
+}
+
+.float{
+    width: max-content;
+    white-space: nowrap;
+}
+
+.float>li{
+    float: left;
+}
+
+.list>li{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.refs{
+    min-height: 400px;
+    min-width: 600px;
+}
+
+.center{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.border{
+    margin: 3px;
+    padding: 5px;
+    background-color: var(--border-bg);
+    border-width: var(--border-width);
+    border-style:  var(--border-style);
+    border-color: var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.nav{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 17px !important;
+    grid-area: nav;
+    margin: 3px 3px 3px 0;
+    padding: 5px;
+    background-color: var(--border-bg);
+    border-width: var(--border-width) var(--border-width) var(--border-width) 0;
+    border-style:  var(--border-style);
+    border-color: var(--border-color);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+.nav>*{
+    margin: 3px;
+}
+
+.tableContainer{
+    min-height: 0px;
+    grid-area: tab;
+    
+}
+
+.graphContainer{
+    grid-area: graph;
+    min-height: 0px;
+}
+
+.footer{
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    grid-area: foot;
+    align-items: center;
+}
+
+.footer a{
+    padding: 0 10px 0 10px;
+}
+
+
+.console{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+select{
+    border-radius: var(--border-radius);
+    border-style: var(--border-style);
+    color: var(--color);
+    border-color: var(--color);
+    background-color: var(--bg-color);
+}
+
+input{
+    border-width: 1px;
+    border-radius: var(--border-radius);
+    border-style: var(--border-style);
+    color: var(--color);
+    border-color: var(--color);
+    background-color: var(--bg-color);
+}
+
+
+Button{
+    color: inherit;
+    background-color: inherit;
+    border-radius: 5px;
+    border: 1px solid var(--color);
+    padding: 6px;
+}
+Button:hover{
+    background-color: inherit;
+    border-width: 2px;
+    border-color: var(--hover);
+    padding: 5px;
+}
+
+
+
+
+
+.canvas{
+    border:1px solid black;
+    border-radius: 5px;
+}
+
+.selectedBtn{
+    color:var(--success-text);
+    background-color: var(--success);
+}
+
+.selectedBtn:hover{
+    background-color: var(--success);
+    
+}
+
+.error {
+    background-color: var(--error);
+    color: var(--error-text)
+}
+
+.warning{
+    background-color: var(--warning);
+    color: var(--warning-text);
+}
+
+.success{
+    color: var(--success-text);
+    background-color: var(--success);
+}
+
+.moveBtn{
+    width: min-content;
+    padding: 3px 4px 3px 4px;
+    margin-left: 5px;
+}
+
+.moveBtn:hover{
+   
+    padding: 2px 3px 2px 3px;
+}
+
+.addBtn{
+    color: var(--success-text);
+    background-color: var(--success);
+    font-size: large;
+    padding: 1.5px 5px 1px 5px;
+    margin-left: 5px;
+}
+
+.addBtn:hover{
+    background-color: var(--success);
+    padding: 0.5px 4px 0px 4px;
+}
+
+.dropArea{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+
+.dropContainer{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #000000a4;
+    z-index: 10;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop{
+    width: 80%;
+    height: 80%;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar{
+    border: 1px solid var(--color);
+    margin-left: 4px;
+}
+
+.removeBtn{
+    width: min-content;
+    color: var(--error-text);
+    background-color: var(--error);
+    font-size: large;
+    margin: 0 0px 0 4px;
+    padding: 1px 5px 0px 5px;
+}
+.removeBtn:hover{
+    margin: 0px 0px -1px 4px;
+    padding: 0px 4px 0 4px;
+    background-color: var(--error);
+}
+
+#inputLoad{display: none;}
+
+.inrow{
+    display: flex;
+}
+
+.hidden{
+    display: none;
+}
+
+
+.list{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+
+label{
+    width: 100%;
+}
+
+@media screen and (min-width: 600px){
+    .bar{
+        display: none;
+    }
+    body{
+        min-width: 0;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: 30% 30% 40%;
+        grid-template-areas: 
+        'head head nav'
+        'loc graph graph'
+        'loc tab tab'
+        'foot foot foot'
+        ;
+    }
+
+    #locationOptions, #locationSelector{
+        display: block;
+    }
+    
+    .list >li{
+        margin-right: 5px;
+        float: none;
+    }
+    
+    #settingsOptions, .locText{
+        display: block;
+    }
+
+    .locationContainer{
+        
+        display: inline;
+        margin: 0;
+        padding: 0;
+        border-width: 0;
+        background-color: transparent;
+        
+    }
+
+    .lc{
+        position: sticky;
+        top: 10px;        
+    }
+
+    .locationBorder, .settingsBorder, .infoBorder{
+       
+        margin: 3px;
+        padding: 5px;
+        background-color: var(--border-bg);
+        border-width: var(--border-width);
+        border-style:  var(--border-style);
+        border-color: var(--border-color);
+        border-radius: var(--border-radius);
+    }
+
+}
+
+
+@media screen and (min-width: 996px){
+
+    body{
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 20% 40% 40%;
+        grid-template-areas: 
+        'head head nav'
+        'loc tab graph'
+        'foot foot foot'
+        ;
+    }
+
+    .gc{
+        position: sticky;
+        top: 10px;
+        padding: 0 10px 6px 10px;
+    }
+
+    
+
+    .locationBorder{
+        margin-bottom: 6px;
+    }
+
+    #settingsOptions, #locationOptions{
+        display: block;
+    }
+
+    #settingsOptions>*, #locationOptions>*{
+       margin: 5px;;
+    }
+
+    .titleText > Button {
+        padding: 0;
+    }
+    .titleText > Button:hover {
+        background-color: inherit;
+    }
+
+    nav{
+        position: sticky;
+        left:0;
+    }
+}

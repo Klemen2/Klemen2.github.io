@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="sl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<title class="txt_title">Vodenje porabe električne energije</title>
+</head>
+
+<body>
+	<div class="dropContainer" id="dropContainer">
+		<div class="dropArea" id="drop"></div>
+		<div class="drop border txt_dropfile">Spusti datoteko</div>
+	</div>
+	<header class="header">
+		<h3 class="txt_title">Vodenje porabe električne energije</h3>
+	</header>
+
+	<div class="locationContainer">
+		<div class="lc">
+			<div class="locationBorder">
+				<div class="titleText locText txt_tables">Tabele</div>
+				<div id="locationOptions">
+					<ul id="locationSelector" class="list float"></ul><input type="text" id="inputAddLocation"><button
+						id="btnAddLocation" class="addBtn">+</button>
+				</div>
+			</div>
+			<div class="settingsBorder">
+				<div class="titleText txt_settings">Nastavitve</div>
+				<div id="settingsOptions">
+					<ul class="list float">
+						<li>
+							<input type="checkbox" id="deleteToggle">
+							<span class="txt_deletebtns">Gumbi za odstranitev</span><span class="bar"></span>
+						</li>
+						<li>
+							<input type="checkbox" name="darkMode" id="dark">
+							<span class="txt_darkmode">Temni način</span><span class="bar"></span>
+						</li>
+						<li>
+							<span class="txt_filename">Ime datoteke</span>
+							<input id="fileName" name="defaultSaveFilename" type="text">
+							<span class="bar"></span>
+						</li>
+						<li>
+							<span class="txt_tarif">Tarifa</span> 
+							<select id="defTariff" name="defaultTariff">
+								<option class="txt_high_s" value="VT">Visoka (VT)</option>
+								<option class="txt_low_s" value="MT">Nizka (MT)</option>
+								<option class="txt_unified_s" value="ET">Enotna (ET)</option>
+							</select>
+							<span class="bar"></span>
+						</li>
+						<li>
+							<span class="txt_high_s">Visoka (VT)</span>
+							<input id="defTariffV" type="number" name="defaultTariffPricesVT" step=0.0001>
+							<span class="bar"></span>
+						</li>
+						<li> 
+							<span class="txt_low_s">Nizka (MT)</span>
+							<input id="defTariffM" type="number" name="defaultTariffPricesMT" step=0.0001>
+							<span class="bar"></span>
+						</li>
+						<li>
+							<span class="txt_unified_s">Enotna (ET)</span>
+							<input id="defTariffE" type="number" name="defaultTariffPricesET" step=0.0001>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="infoBorder txt_info">
+				Podatki se shanjujejo sproti v lokalno shrambo brskalnika.
+			</div>
+		</div>
+
+	</div>
+	<nav class="nav">
+		<select id="language">
+			<option value="en">English</option>
+			<option value="sl">Slovenščina</option>
+		</select>
+		<button id="btnSave" class="txt_save">Shrani</button>
+		<button id="btnLoad" class="txt_upload">Naloži</button>
+		<button id="btnNew" class="txt_new">Novo</button>
+		
+		<input type="file" id="inputLoad" accept=".json" />
+	</nav>
+	<div class="tableContainer">
+		<div class="border table">
+			<table id="table">
+				<thead>
+					<tr>
+						<th><span class="txt_usage">Poraba</span> [kWh]</th>
+						<th><span class="txt_price"> Cena</span> [kWh]</th>
+						<th class="txt_tarif">Tarifa</th>
+						<th  class="txt_date">Datum</th>
+					</tr>
+					<tr id="row" style="display:none">
+						<td><input type="number" value=$usage></td>
+						<td><input type="number" step=0.0001 value=$price></td>
+						<td>
+							<select>
+								<option class="txt_high_t" value="VT" $VT>VT</option>
+								<option class="txt_low_t" value="MT" $MT>MT</option>
+								<option class="txt_unified_t" value="ET" $ET>ET</option>
+							</select>
+						</td>
+						<td><input type="date" value=$date></td>     
+					</tr>
+				</thead>
+			</table>
+			<button id="btnAddRow" class="addBtn">+</button>
+		</div>
+	</div>
+	<div class="graphContainer">
+		<div class="border gc">
+			<div class="titleText txt_statistic">Statistika</div>
+			<div>
+				<ul class="list">
+					<li>
+						<span class="txt_numberofdays">Število dni</span>: <span id="stat_days">0</span>
+					</li>
+					<li>
+						<span class="txt_usageperday">Povprečna poraba na dan</span>: <span id="stat_avg_usage">0</span> kWh
+					</li>
+					<li>
+						<span class="txt_priceperday">Povprečna cena na dan</span>: <span id="stat_avg_price">0</span> €
+					</li>
+					<li>
+						<span class="txt_totalusage">Skupna poraba</span>: <span id="stat_usage">0</span> kWh
+					</li>
+					<li>
+						<span class="txt_totalprice">Skupna cena</span>: <span id="stat_price">0</span> €
+					</li>
+					<li>
+						<span class="txt_minusage">Najmanjša poraba</span>: <span id="stat_min_usage">Tabela še ne obstaja</span>
+					</li>
+					<li>
+						<span class="txt_maxusage">Največja poraba</span>: <span id="stat_max_usage">Tabela še ne obstaja</span>
+					</li>
+					<li>
+						<span class="txt_minprice">Najcenejša cena</span>: <span id="stat_min_price">Tabela še ne obstaja</span>
+					</li>
+					<li>
+						<span class="txt_maxprice">Najdražja cena</span>: <span id="stat_max_price">Tabela še ne obstaja</span>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="console" id="htmlConsole"></div>
+	<footer class="footer border">
+		<a href="https://github.com/Klemen2">
+			<svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+				<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+			</svg>
+			<span class="padding-left">Klemen2</span>
+		</a>
+		<a href="mailto:klemensustar1@gmail.com">
+			<i class="fa fa-envelope" style="color:black"></i>
+			<span class="padding-left">klemensustar1@gmail.com</span>
+		</a>
+	</footer>
+	<script src="lang.js"></script>
+	<script src="script.js"></script>
+</body>
+
+</html>

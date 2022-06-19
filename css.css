@@ -4,6 +4,7 @@
 
     --border-color: #c4c4c4;
     --border-width: 2px;
+    --border-width-fig: 1px;
     --border-style: solid;
 
     --section-padding: 20px;
@@ -141,6 +142,7 @@ a:hover{
 img{
     max-width:100%;
 }
+
 figure{
     max-width: 100%;
     border-style: var(--border-style);
@@ -157,6 +159,10 @@ figcaption {
     align-items: center;
 }
 
+.print{
+    display:none;
+}
+
 @media screen and (min-width: 700px) {
     .imageRow{
         display: flex;
@@ -169,3 +175,28 @@ figcaption {
     }
 
 }
+
+@media print {
+    header, .sticky, .noprint { display:none; }
+    .imageRow{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .imageRow > figure{
+       width:400px;
+    }
+    footer{
+        position: fixed;
+        bottom: 0;
+    }
+
+    .page:after {
+        counter-increment: page;
+        content: counter(page);
+    }
+    .print{
+        display:block;
+    }
+ }

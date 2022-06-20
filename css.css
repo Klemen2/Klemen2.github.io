@@ -168,6 +168,7 @@ figcaption {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
+        align-items: flex-start;
     }
 
     .imageRow > figure{
@@ -176,7 +177,24 @@ figcaption {
 
 }
 
+.pagebreak{ 
+    page-break-after: always;
+    break-after: always;
+}
+
 @media print {
+    
+    @page {
+        margin: 14mm 16mm 14mm 16mm; 
+        width: 100%;
+
+        counter-increment: page;
+    }
+
+    body {
+        font-size: 19px !important; 
+    }
+
     header, .sticky, .noprint { display:none; }
     .imageRow{
         display: flex;
@@ -187,20 +205,22 @@ figcaption {
     .imageRow > figure{
        width:400px;
     }
+
     footer{
         position: fixed;
         bottom: 0;
+    }
+
+    .page::after {
+        
     }
 
     a {
         color: black !important;
     }
 
-    .page:after {
-        counter-increment: page;
-        content: counter(page);
-    }
+    
     .print{
-        display:block;
+        display: initial;
     }
  }

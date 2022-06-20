@@ -187,12 +187,11 @@ figcaption {
     @page {
         margin: 14mm 16mm 14mm 16mm; 
         width: 100%;
-
         counter-increment: page;
     }
 
     body {
-        font-size: 19px !important; 
+        font-size: 15.5px !important; 
     }
 
     header, .sticky, .noprint { display:none; }

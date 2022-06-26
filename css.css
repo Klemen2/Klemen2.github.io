@@ -215,7 +215,7 @@ figcaption {
         font-size: 15.5px !important; 
     }
 
-    header, .sticky, .noprint { display:none; }
+    header, .sticky, .noprint, video { display:none; }
     .imageRow{
         display: flex;
         justify-content: space-between;
@@ -226,6 +226,7 @@ figcaption {
        width:400px;
     }
 
+    
     footer{
         position: fixed;
         bottom: 0;
